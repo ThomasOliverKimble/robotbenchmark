@@ -15,7 +15,7 @@ export default class Page {
     navbarTemplate.innerHTML =
       `<nav id="navbar" class="navbar is-dark is-fixed-top"">
         <div class="navbar-brand">
-          <a class="navbar-item is-size-4" id="navbar-home" href="/" style="margin-right: 30px;">
+          <a class="navbar-item is-size-4" id="navbar-home" href="home" style="margin-right: 30px;">
             <img src="httpdocs/images/robotbenchmark-icon-inverted.png" id="navbar-logo"/>&ensp;<strong>robot</strong>benchmark
           </a>
           <a class="navbar-burger burger" data-target="router-navbar">
