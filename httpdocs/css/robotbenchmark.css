@@ -11,7 +11,23 @@ body {
   overflow: hidden;
 }
 
+/* Main Container */
+#main-container {
+  position: absolute;
+  height: calc(100% - 4.25rem);
+  width: 100%;
+  top: 4.25rem;
+  left: 0;
+  overflow-x: hidden;
+  min-width: 325px;
+  margin: 50px 200px;
+}
+
 /*  Navbar  */
+
+.navbar {
+  height: 4.25rem;
+}
 
 #sign-up:hover {
   background-color: #3abb67;
