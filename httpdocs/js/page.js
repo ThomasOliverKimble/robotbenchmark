@@ -7,9 +7,12 @@ export default class Page {
     let that = this;
     // Catch clicks on the root-level element.
     document.body.addEventListener('click', function(event) {
+      console.log('Page Clicked...');
       let element = event.target;
       if (element.tagName !== 'A' && element.parentElement.tagName === 'A')
         element = element.parentElement;
+      
+      console.log('element: ' + element);
       if (element.tagName === 'A' && element.href && event.button === 0) { // left click on an <a href=...>
         if (element.origin === document.location.origin &&
             (element.pathname !== document.location.pathname || document.location.hash === element.hash ||
