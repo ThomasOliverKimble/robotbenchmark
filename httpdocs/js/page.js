@@ -1,113 +1,96 @@
 export default class Page {
-  constructor(title) {
-    this.createNavbar();
-
+  constructor(title, routes) {
     this.title = title;
-    this.content = document.createElement('div');
-    this.content.id = 'main-container';
-    document.body.append(this.content);
+    this.content = document.querySelector('.main-container-content');
+    this.routes = routes;
 
     let that = this;
-
-    this.createFooter();
-  }
-
-  createNavbar() {
-    let navbar = document.querySelector('.navbar');
-    if (navbar)
-      document.body.removeChild(navbar);
-    let navbarTemplate = document.createElement('template');
-    navbarTemplate.innerHTML =
-      `<nav id="navbar" class="navbar is-dark is-fixed-top"">
-        <div class="navbar-brand">
-          <a class="navbar-item is-size-4" id="navbar-home" href="/" style="margin-right: 30px;">
-            <img src="httpdocs/images/robotbenchmark-icon-inverted.png" id="navbar-logo"/>&ensp;<strong>robot</strong>benchmark
-          </a>
-          <a class="navbar-burger burger" data-target="router-navbar">
-            <span></span>
-            <span></span>
-            <span></span>
-          </a>
-        </div>
-        <div id="router-navbar" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item has-text-grey-light" href="benchmarks">
-              Benchmarks
-            </a>
-            <a class="navbar-item has-text-grey-light" href="about">
-              About
-            </a>
-          </div>
-          <div class="navbar-end">
-          </div>
-        </div>
-      </nav>`;
-    document.body.append(navbarTemplate.content.firstChild);
-  
-    document.getElementById('navbar-home').addEventListener('mouseover', function(e) {
-      document.getElementById('navbar-logo').src = 'httpdocs/images/robotbenchmark-icon-inverted-hover.png';
+    // Catch clicks on the root-level element.
+    document.body.addEventListener('click', function(event) {
+      let element = event.target;
+      if (element.tagName !== 'A' && element.parentElement.tagName === 'A')
+        element = element.parentElement;
+      if (element.tagName === 'A' && element.href && event.button === 0) { // left click on an <a href=...>
+        if (element.origin === document.location.origin &&
+            (element.pathname !== document.location.pathname || document.location.hash === element.hash ||
+              element.hash === '')) {
+          // same-origin navigation: a link within the site (we are skipping linking to the same page with possibly hashtags)
+          event.preventDefault(); // prevent the browser from doing the navigation
+          that.load(element.pathname + element.search + element.hash);
+          if (element.hash === '')
+            document.querySelector('.main-container').scrollTo(0, 0);
+        }
+      }
     });
-  
-    document.getElementById('navbar-home').addEventListener('mouseout', function(e) {
-      document.getElementById('navbar-logo').src = 'httpdocs/images/robotbenchmark-icon-inverted.png';
+    window.onpopstate = function(event) {
+      that.load(document.location.pathname + document.location.hash, false);
+      event.preventDefault();
+    };
+  }
+
+  load(page = null, pushHistory = true) {
+    this.page = page;
+    let mainContainerContent = document.querySelector('.main-container-content');
+      if (mainContainerContent)
+        mainContainerContent.innerHTML = '';
+    let that = this;
+    let promise = new Promise((resolve, reject) => {
+      if (page === null)
+        page = window.location.pathname + window.location.search + window.location.hash;
+      const url = new URL(window.location.origin + page);
+      if (url.pathname === '/404.php') {
+        that.notFound();
+        resolve();
+      } else {
+        let found = false;
+        for (let i = 0; i < that.routes.length; i++) {
+          const route = that.routes[i];
+          if (url.pathname === route.url) {
+            if (pushHistory)
+              window.history.pushState(null, '', url.pathname + url.search + url.hash);
+            route.setup(that);
+            found = true;
+            resolve();
+            break;
+          }
+        }
+        if (!found) {
+          that.dynamicPage(url, pushHistory).then(() => {
+            resolve();
+          });
+        }
+      }
     });
-
-    const navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-    if (navbarBurgers.length > 0) {
-      navbarBurgers.forEach(el => {
-        el.addEventListener('click', () => {
-          el.classList.toggle('is-active');
-          document.getElementById(el.dataset.target).classList.toggle('is-active');
-        });
-      });
-    }
-  
-    this.logAndSignIn();
+    return promise;
   }
 
-  logAndSignIn() {
-    let logAndSignIn = document.createElement('div');
-    logAndSignIn.setAttribute('class', 'navbar-end');
-    logAndSignIn.innerHTML =
-      `<div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-small is-success" id="sign-up">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-small is-light" id="log-in">
-            Log in
-          </a>
-        </div>
-      </div>`;
-    document.body.querySelector('.navbar-end').replaceWith(logAndSignIn);
+  dynamicPage(url, pushHistory) {
+    let that = this;
+    let promise = new Promise((resolve, reject) => {
+      that.notFound();
+      if (pushHistory)
+        window.history.pushState(null, '', url.pathname + url.search + url.hash);
+      resolve();
+    });
+    return promise;
   }
 
-  createFooter() {
-    let footer = document.querySelector('.footer');
-    if (footer)
-      document.body.removeChild(footer);
-    let footerTemplate = document.createElement('template');
-    footerTemplate.innerHTML =
-    `<footer class="footer">
-      <div class="content has-text-centered" id="footer-github" style="margin-bottom:14px">
-        <p>
-          <a class="has-text-white" target="_blank" href="https://github.com/cyberbotics/webots">
-            <i class="fab fa-github is-size-6"></i> open-source robot simulator</a>
-        </p>
+  notFound() {
+    const url = window.location.origin + this.page;
+    window.history.pushState(null, '404 Not Found', url);
+    const hostname = document.location.hostname;
+    let template = document.createElement('template');
+    template.innerHTML =
+      `<section>
+      <div class="hero-body">
+      <div class="container">
+      <h1 class="title"><i class="fas fa-exclamation-triangle"></i> Page not found (404 error)</h1>
+      <p>The requested page: <a href="${url}">${url}</a> was not found.</p>
+      <p>Please report any bug to <a href="mailto:webmaster@${hostname}">webmaster@${hostname}</a></p>
       </div>
-      <div class="footer-right">
-        <div class="content is-size-7" id="footer-terms-of-service">
-          <p><a class="has-text-white" href="terms-of-service">Terms</a></p>
-        </div>
-        <div class="content is-size-7" id="footer-privacy-policy">
-          <p><a class="has-text-white" href="privacy-policy">Privacy</a></p>
-        </div>
-        <div class="content is-size-7" id="footer-cyberbotics">
-          <p><a class="has-text-white" target="_blank" href="https://cyberbotics.com">Cyberbotics&nbsp;Ltd.</a></p>
-        </div>
       </div>
-    </footer>`;
-    document.body.append(footerTemplate.content.firstChild);
+      </section>`;
+    this.setup('page not found', template.content);
   }
 
   setup(title, content) {
