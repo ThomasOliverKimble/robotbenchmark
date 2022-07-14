@@ -16,6 +16,7 @@ export default class Page {
               element.hash === '')) {
           // same-origin navigation: a link within the site (we are skipping linking to the same page with possibly hashtags)
           event.preventDefault(); // prevent the browser from doing the navigation
+          console.log('Loading page');
           that.load(element.pathname + element.search + element.hash);
           if (element.hash === '')
             document.querySelector('.main-container').scrollTo(0, 0);
