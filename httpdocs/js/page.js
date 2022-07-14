@@ -29,6 +29,7 @@ export default class Page {
   }
 
   load(page = null, pushHistory = true) {
+    console.log(page);
     this.page = page;
     let mainContainerContent = document.querySelector('.main-container-content');
       if (mainContainerContent)
