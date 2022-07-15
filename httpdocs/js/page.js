@@ -4,6 +4,7 @@ export default class Page {
     this.content = content;
     this.createNavbar();
     this.createMainContainer();
+    this.createFooter();
     this.setup();
   }
 
@@ -15,8 +16,9 @@ export default class Page {
     navbarTemplate.innerHTML =
       `<nav id="navbar" class="navbar is-dark is-fixed-top"">
         <div class="navbar-brand">
-          <a class="navbar-item is-size-4" id="navbar-home" href="home" style="margin-right: 30px;">
-            <img src="../httpdocs/images/robotbenchmark-icon-inverted.png" id="navbar-logo"/>&ensp;<strong>robot</strong>benchmark
+          <a class="navbar-item is-size-5" id="navbar-home" href="/" style="margin-right: 30px;">
+            <img src="../httpdocs/images/robotbenchmark-icon-inverted.png" id="navbar-logo"/>&ensp;
+              <strong>robot</strong>benchmark
           </a>
           <a class="navbar-burger burger" data-target="router-navbar">
             <span></span>
@@ -78,20 +80,18 @@ export default class Page {
   }
   
   createMainContainer() {
-    let mainContainer = document.createElement('div');
+    let mainContainer = document.querySelector('.main-container');
+    if (mainContainer)
+      document.body.removeChild(mainContainer);
+    mainContainer = document.createElement('div');
     mainContainer.className = 'main-container';
     document.body.append(mainContainer);
-  
-    let mainContainerContent = document.createElement('div');
-    mainContainerContent.className = 'main-container-content';
-    mainContainer.append(mainContainerContent);
-    this.createFooter(mainContainer);
   }
   
-  createFooter(parent) {
+  createFooter() {
     let footer = document.querySelector('.footer');
     if (footer)
-      parent.removeChild(footer);
+      document.body.removeChild(footer);
     let footerTemplate = document.createElement('template');
     footerTemplate.innerHTML =
     `<footer class="footer">
@@ -115,7 +115,7 @@ export default class Page {
         </div>
       </div>
     </footer>`;
-    parent.append(footerTemplate.content.firstChild);
+    document.body.append(footerTemplate.content.firstChild);
   }
 
   setup() {
@@ -123,7 +123,7 @@ export default class Page {
     NodeList.prototype.forEach = Array.prototype.forEach;
     if (this.content.childNodes) {
       this.content.childNodes.forEach(function(item) {
-        document.querySelector('.main-container-content').appendChild(item);
+        document.querySelector('.main-container').appendChild(item);
       });
     }
   }
