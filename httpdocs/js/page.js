@@ -17,7 +17,7 @@ export default class Page {
       `<nav id="navbar" class="navbar is-dark is-fixed-top"">
         <div class="navbar-brand">
           <a class="navbar-item is-size-5" id="navbar-home" href="/" style="margin-right: 30px;">
-            <img src="../httpdocs/images/robotbenchmark-icon-inverted.png" id="navbar-logo"/>&ensp;
+            <img src="httpdocs/images/robotbenchmark-icon-inverted.png" id="navbar-logo"/>&ensp;
               <strong>robot</strong>benchmark
           </a>
           <a class="navbar-burger burger" data-target="router-navbar">
@@ -26,7 +26,7 @@ export default class Page {
             <span></span>
           </a>
         </div>
-        <div id="router-navbar" class="navbar-menu">
+        <div id="router-navbar" class="navbar-menu" style="display: none;">
           <div class="navbar-start">
             <a class="navbar-item has-text-grey-light" href="benchmarks">
               Benchmarks
@@ -42,11 +42,11 @@ export default class Page {
     document.body.append(navbarTemplate.content.firstChild);
   
     document.getElementById('navbar-home').addEventListener('mouseover', function(e) {
-      document.getElementById('navbar-logo').src = '../httpdocs/images/robotbenchmark-icon-inverted-hover.png';
+      document.getElementById('navbar-logo').src = 'httpdocs/images/robotbenchmark-icon-inverted-hover.png';
     });
   
     document.getElementById('navbar-home').addEventListener('mouseout', function(e) {
-      document.getElementById('navbar-logo').src = '../httpdocs/images/robotbenchmark-icon-inverted.png';
+      document.getElementById('navbar-logo').src = 'httpdocs/images/robotbenchmark-icon-inverted.png';
     });
   
     const navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
