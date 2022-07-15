@@ -37,7 +37,7 @@ function runWebotsView(event) {
     return;
 
   const url = document.getElementById('input-benchmark-url').value;
-  const server = 'https://webots.cloud/ajax/server/session.php?url=' + url;
+  const server = 'https://testing.webots.cloud/ajax/server/session.php?url=' + url;
   const mode = 'x3d';
 
   setupWebotsView(url);
