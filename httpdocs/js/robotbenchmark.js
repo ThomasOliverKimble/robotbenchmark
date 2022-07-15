@@ -131,6 +131,8 @@ function clickEvent(event) {
     return;
   }
   const targetId = event.target.parentNode.id;
+  if (!document.getElementById('benchmark-table'))
+    return;
   document.getElementById('benchmark-table').childNodes.forEach(function(row) {
     if (row.lastChild && row.lastChild.childNodes[1].classList.contains('is-primary') && targetId !== row.id) {
       row.lastChild.childNodes[1].classList.toggle('is-primary');
