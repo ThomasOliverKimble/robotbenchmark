@@ -9,23 +9,14 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background-color: #0a0a0a;
+  /* background-color: #363636; */
 }
 
 /* Main Container */
-.main-container {
-  position: absolute;
-  height: calc(100vh - 4.25rem);
-  width: 100%;
-  top: 4.25rem;
-  left: 0;
-  overflow-x: hidden;
-  min-width: 325px;
-}
 
 .main-container {
   position: absolute;
-  height: calc(100% - 6.25rem);
+  height: calc(100% - 3.25rem);
   width: 100%;
   top: 3.25rem;
   left: 0;
@@ -53,7 +44,7 @@ body {
 /*  Navbar  */
 
 #navbar {
-  box-shadow: 0 -20px 20px 30px rgb(0, 0, 0);
+  box-shadow: 0 -20px 20px 30px #363636;
 }
 
 .navbar {
@@ -68,6 +59,10 @@ body {
   background-color: #d9d9d9;
 }
 
+#navbar-logo {
+  height: 1.5rem;
+}
+
 /*  Footer  */
 
 .footer {
@@ -79,8 +74,7 @@ body {
   padding-top: 10px;
   padding-right: 10px;
   padding-bottom: 0;
-  background: linear-gradient(0deg, #181818 0%, #323232 70%);
-  box-shadow: 0 20px 20px 30px rgb(0, 0, 0);
+  background: linear-gradient(0deg, #181818 0%, #363636 70%);
 }
 
 .footer-left {
@@ -152,4 +146,22 @@ body {
   transform: translateY(-50%);
   margin: 0;
   width: inherit;
+}
+
+.is-regular {
+  font-weight: normal;
+  pointer-events: none;
+}
+
+.title-container {
+  position: relative;
+  display: flex;
+}
+
+.dark-row {
+  background-color: #DBDBDB;
+}
+
+.align-row-vertically {
+  vertical-align: middle; 
 }

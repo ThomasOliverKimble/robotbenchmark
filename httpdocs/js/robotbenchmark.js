@@ -1,48 +1,57 @@
 import Page from "./page.js";
 
 document.addEventListener('DOMContentLoaded', function() {
-  const content = homePage()
+  const content = homePage();
   new Page('home', content);
-  document.getElementById('start-benchmark-button').addEventListener('click', runWebotsView);
-  document.getElementById('input-benchmark-url').addEventListener('keyup', runWebotsView);
+  if (listBenchmarks())
+    document.addEventListener('click', clickEvent);
 });
 
 function homePage() {
   const template = document.createElement('template');
   template.innerHTML =
-    `<section class="hero is-medium is-black is-vertically-centered">
+    `<section class="hero is-medium has-background-grey-lighter">
       <div class="hero-body">
-        <div class="container">
-          <p class="title">
-            Benchmark Testing
-          </p>
-          <p class="subtitle">
-            Add the url to your benchmark's GitHub repository:
-          </p>
-          <section class="container">
-            <div class="container-input">
-              <input class="input" id="input-benchmark-url" type="text"
-                placeholder="https://github.com/ ...">
-              <button class="button is-warning" id="start-benchmark-button">Start Benchmark</button>
-            </div>
-          </section>
+        <div class="container title-container">
+          <figure class="image is-64x64" style="top: 6px; margin-right: 15px;">
+            <img src="httpdocs/images/robotbenchmark-logo-black-eyes.svg" id="title-logo"/>
+          </figure>
+          <div class="title-text">
+            <p class="title is-size-1">
+              robot<a class="is-unselectable is-regular has-text-primary">benchmark</a>
+            </p>
+            <p class="subtitle">
+              The online robotics challenge platform
+            </p>
+          </div>
         </div>
       </div>
+    </section>
+    <section class="section is-small">
+      <table class="table mx-auto" style="min-width: 700px">
+        <thead>
+          <tr>
+            <th>Robot</th>
+            <th class="has-text-centered">Title</th>
+            <th class="has-text-centered">Attempts</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="benchmark-table">
+        </tbody>
+      </table>
     </section>`;
   return template.content;
 }
 
-function runWebotsView(event) {
-  if (!(event.key === 'Enter' || event.target.id === 'start-benchmark-button'))
-    return;
-
-  const url = document.getElementById('input-benchmark-url').value;
+function runWebotsView(url) {
   const server = 'https://testing.webots.cloud/ajax/server/session.php?url=' + url;
   const mode = 'x3d';
 
   setupWebotsView(url);
 
-  let promise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     let dotIndex = url.lastIndexOf('/') + 1;
     let thumbnailUrl = (url.slice(0, dotIndex) + "." +url.slice(dotIndex)).replace('github.com',
       'raw.githubusercontent.com').replace('/blob', '').replace('.wbt', '.jpg');
@@ -57,10 +66,80 @@ function setupWebotsView(url) {
     '<webots-view id="webots-view" style="height:100%; width:100%; display:block;"></webots-view>' : '';
   let template = document.createElement('template');
   template.innerHTML =
-    `<section class="section" style="padding:0;height:100%">
+    `<section class="section" style="padding:0; height:100%">
       <div class="simulation-container" id="webots-view-container">
         ${view}
       </div>
      </section>'`;
   new Page('webots-view', template.content);
+}
+
+function listBenchmarks() {
+  return new Promise((resolve, reject) => {
+    fetch('httpdocs/benchmarks/benchmark_list.txt')
+      .then(function(response) { return response.text(); })
+      .then(function(data) {
+        const benchmarks = data.split('\n');
+        benchmarks.forEach(function(benchmark) {
+          if (benchmark === '')
+            return;
+          const title = benchmark.split('//')[0];
+          const difficulty = benchmark.split('//')[1];
+          const description = benchmark.split('//')[2];
+          const robot = benchmark.split('//')[3];
+          const star = '<i class="fas fa-xs fa-star"></i>';
+          let difficultyStars = '<div class=difficulty>' + star.repeat(difficulty) + '</div>';
+          let titleClean = title.split('_');
+          for (let i = 0; i < titleClean.length; i++)
+            titleClean[i] = titleClean[i].charAt(0).toUpperCase() + titleClean[i].slice(1);
+          titleClean = titleClean.join(' ');
+
+          let row = document.createElement('tr');
+          row.id = 'benchmark-' + title.replace('_', '-');
+          row.className = 'is-clickable';
+          row.innerHTML =
+            `<td class="has-text-centered" style="vertical-align: middle;" title="${robot}">
+              <figure class="image is-48x48">
+                <img src="httpdocs/images/robots/${robot}.png"></img>
+              </figure>
+            </td>
+            <td class="has-text-centered" style="vertical-align: middle;">
+              <p style="font-size: small">${titleClean}</p>${difficultyStars}
+            </td>
+            <td class="has-text-centered" style="vertical-align: middle;">
+              <span class="tag">0</span>
+            </td>
+            <td style="vertical-align: middle; font-size: small">
+              ${description}
+            </td>
+            <td style="vertical-align: middle;">
+              <button class="button is-small" id="${title}-start">Start</button>
+            </td>`;
+          document.getElementById('benchmark-table').appendChild(row);
+          resolve();
+        });
+      });
+  });
+}
+
+function clickEvent(event) {
+  if (event.target.id.endsWith('start')) {
+    const benchmark = event.target.id.split('-')[0];
+    const url = 'https://github.com/ThomasOliverKimble/robotbenchmark/blob/testing/httpdocs/benchmarks/' +
+      benchmark + '/worlds/' + benchmark + '.wbt';
+    runWebotsView(url);
+    return;
+  }
+  const targetId = event.target.parentNode.id;
+  document.getElementById('benchmark-table').childNodes.forEach(function(row) {
+    if (row.lastChild && row.lastChild.childNodes[1].classList.contains('is-primary') && targetId !== row.id) {
+      row.lastChild.childNodes[1].classList.toggle('is-primary');
+      row.classList.toggle('dark-row');
+    }
+  });
+  if (!targetId.startsWith('benchmark'))
+    return;
+  let benchmarkRow = document.getElementById(targetId);
+  benchmarkRow.classList.toggle('dark-row');
+  benchmarkRow.lastChild.childNodes[1].classList.toggle('is-primary');
 }
