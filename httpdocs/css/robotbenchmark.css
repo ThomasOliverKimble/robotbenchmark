@@ -52,15 +52,12 @@ body {
 
 /*  Navbar  */
 
-/* @media screen and (max-width: 1023px) {
-  .navbar-item, .navbar-burger {
-    top: 8px;
-  }
-} */
+#navbar {
+  box-shadow: 0 -20px 20px 30px rgb(0, 0, 0);
+}
 
 .navbar {
   height: 3.25rem;
-  box-shadow: 0 -15px 15px 15px rgba(0, 0, 0, 0.4);
 }
 
 #sign-up:hover {
@@ -83,6 +80,7 @@ body {
   padding-right: 10px;
   padding-bottom: 0;
   background: linear-gradient(0deg, #181818 0%, #323232 70%);
+  box-shadow: 0 20px 20px 30px rgb(0, 0, 0);
 }
 
 .footer-left {
