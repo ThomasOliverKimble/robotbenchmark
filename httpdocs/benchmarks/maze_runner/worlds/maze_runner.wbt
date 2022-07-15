@@ -1,4 +1,24 @@
 #VRML_SIM R2022b utf8
+
+EXTERNPROTO "webots://projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "webots://projects/objects/lights/protos/CeilingLight.proto"
+EXTERNPROTO "webots://projects/objects/tables/protos/Table.proto"
+EXTERNPROTO "webots://projects/appearances/protos/VarnishedPine.proto"
+EXTERNPROTO "webots://projects/samples/robotbenchmark/maze_runner/protos/MazeBlock.proto"
+EXTERNPROTO "webots://projects/robots/mobsya/thymio/protos/Thymio2.proto"
+EXTERNPROTO "webots://projects/samples/robotbenchmark/maze_runner/protos/MazeRunnerBenchmark.proto"
+EXTERNPROTO "webots://projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "webots://projects/objects/chairs/protos/WoodenChair.proto"
+EXTERNPROTO "webots://projects/objects/apartment_structure/protos/Door.proto"
+EXTERNPROTO "webots://projects/objects/apartment_structure/protos/DoorLever.proto"
+EXTERNPROTO "webots://projects/appearances/protos/Roughcast.proto"
+EXTERNPROTO "webots://projects/objects/apartment_structure/protos/Window.proto"
+EXTERNPROTO "webots://projects/objects/cabinet/protos/Cabinet.proto"
+EXTERNPROTO "webots://projects/objects/school_furniture/protos/Blackboard.proto"
+EXTERNPROTO "webots://projects/objects/school_furniture/protos/Clock.proto"
+EXTERNPROTO "webots://projects/objects/tables/protos/Desk.proto"
+EXTERNPROTO "webots://projects/objects/computers/protos/Laptop.proto"
+
 WorldInfo {
   info [
     "Benchmark objective: "
@@ -21,8 +41,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.2112162490056656 0.47581157254424766 -0.8538097232925769 1.3120355921026157
-  position -0.6206735705969656 1.3840849833809437 1.8887768131421527
+  orientation 0.38263647806712514 0.45616835349419954 -0.8034299962801845 1.863251904563074
+  position 0.10584067356190273 0.46508417348331055 1.7483738520122416
   followSmoothness 0.01
 }
 TexturedBackground {
@@ -52,7 +72,7 @@ Table {
   trayAppearance PBRAppearance {
     baseColorMap ImageTexture {
       url [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/samples/robotbenchmark/maze_runner/worlds/textures/table_top.jpg"
+        "webots://projects/samples/robotbenchmark/maze_runner/worlds/textures/table_top.jpg"
       ]
     }
     roughness 1
@@ -232,7 +252,7 @@ Floor {
   appearance PBRAppearance {
     baseColorMap ImageTexture {
       url [
-        "https://raw.githubusercontent.com/Cyberbotics/webots/develop/projects/default/worlds/textures/square_block_parquetry.jpg"
+        "webots://projects/default/worlds/textures/square_block_parquetry.jpg"
       ]
     }
     roughness 1
@@ -304,7 +324,7 @@ DEF CEILING Solid {
         baseColor 0.415686 0.647059 0.545098
         baseColorMap ImageTexture {
           url [
-            "https://raw.githubusercontent.com/Cyberbotics/webots/develop/projects/samples/robotbenchmark/maze_runner/worlds/textures/wall.jpg"
+            "webots://projects/samples/robotbenchmark/maze_runner/worlds/textures/wall.jpg"
           ]
         }
         roughness 0.5
@@ -501,12 +521,14 @@ Desk {
   rotation 0 0 1 1.308997
   name "desk(3)"
 }
-Monitor {
+Laptop {
   translation 2.520944 -0.652021 0.709285
   rotation -0.0011619992155090305 -0.9999993248786837 0 0.001638
+  controller "<none>"
 }
-Monitor {
+Laptop {
   translation -2.231749 0.215506 0.709268
   rotation 0.0008149997293284472 0 0.9999996678876654 -3.141593
-  name "monitor(1)"
+  name "laptop(1)"
+  controller "<none>"
 }

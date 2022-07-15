@@ -9,7 +9,7 @@ PROTO HighwayDrivingBenchmark [
 ]
 {
   Robot {
-    name "Highway Driving"
+    name "highway driving benchmark"
     controller "highway_driving_benchmark"
     supervisor TRUE
     window IS window

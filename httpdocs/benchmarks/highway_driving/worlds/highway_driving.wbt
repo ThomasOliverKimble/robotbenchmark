@@ -1,4 +1,29 @@
 #VRML_SIM R2022b utf8
+
+EXTERNPROTO "webots://projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "webots://projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "webots://projects/objects/road/protos/Road.proto"
+EXTERNPROTO "webots://projects/objects/road/protos/RoadLine.proto"
+EXTERNPROTO "webots://projects/samples/robotbenchmark/highway_driving/protos/HighwayDrivingBenchmark.proto"
+EXTERNPROTO "webots://projects/vehicles/protos/lincoln/LincolnMKZ.proto"
+EXTERNPROTO "webots://projects/samples/robotbenchmark/highway_driving/protos/DistanceSensorVisualization.proto"
+EXTERNPROTO "webots://projects/vehicles/protos/range_rover/RangeRoverSportSVRSimple.proto"
+EXTERNPROTO "webots://projects/objects/traffic/protos/TrafficCone.proto"
+EXTERNPROTO "webots://projects/objects/traffic/protos/HighwayPole.proto"
+EXTERNPROTO "webots://projects/objects/traffic/protos/HighwaySign.proto"
+EXTERNPROTO "webots://projects/appearances/protos/Grass.proto"
+EXTERNPROTO "webots://projects/objects/geometries/protos/Extrusion.proto"
+EXTERNPROTO "webots://projects/objects/trees/protos/Forest.proto"
+EXTERNPROTO "webots://projects/vehicles/protos/generic/BusSimple.proto"
+EXTERNPROTO "webots://projects/vehicles/protos/bmw/BmwX5Simple.proto"
+EXTERNPROTO "webots://projects/vehicles/protos/lincoln/LincolnMKZSimple.proto"
+EXTERNPROTO "webots://projects/vehicles/protos/generic/TruckSimple.proto"
+EXTERNPROTO "webots://projects/vehicles/protos/generic/ScooterSimple.proto"
+EXTERNPROTO "webots://projects/vehicles/protos/generic/ScooterDriver.proto"
+EXTERNPROTO "webots://projects/vehicles/protos/citroen/CitroenCZeroSimple.proto"
+EXTERNPROTO "webots://projects/vehicles/protos/toyota/ToyotaPriusSimple.proto"
+EXTERNPROTO "webots://projects/default/protos/SumoInterface.proto"
+
 WorldInfo {
   info [
     "The highway driving benchmark aims at programing an autonomous Lincoln MKZ in Python. "
@@ -135,7 +160,7 @@ DEF ROAD Road {
 }
 HighwayDrivingBenchmark {
 }
-DEF WEBOTS_0 LincolnMKZ {
+DEF WEBOTS_VEHICLE0 LincolnMKZ {
   translation 2.00063 44.0884 0.4
   rotation 0 0 1 1.5708
   controller "highway_driving"
@@ -474,6 +499,7 @@ DEF WEBOTS_0 LincolnMKZ {
           aperture 0.1
         }
       ]
+      name "sensor visualization"
       controller "sensors_visualization"
       supervisor TRUE
     }
@@ -508,7 +534,6 @@ DEF WEBOTS_VEHICLE1 RangeRoverSportSVRSimple {
   translation -1.29703 701.325 0.4
   rotation 0 0 1 1.831799
   name "vehicle(1)"
-  window "<none>"
 }
 TrafficCone {
   translation -0.640168 699.565 0
@@ -527,7 +552,6 @@ TrafficCone {
 DEF WEBOTS_VEHICLE2 Solid {
   translation -694.60547 -1.9070343 0.4
   name "solid(1)"
-  window "<none>"
 }
 HighwayPole {
   translation 9.64 215 0
@@ -541,7 +565,7 @@ HighwayPole {
     HighwaySign {
       translation 0 -7.23 0
       texture [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/traffic/protos/textures/highway_sign_bayonne.jpg"
+        "webots://projects/objects/traffic/protos/textures/highway_sign_bayonne.jpg"
       ]
     }
   ]
@@ -552,7 +576,7 @@ HighwayPole {
       height 1.7
       length 3.5
       texture [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/traffic/protos/textures/highway_sign_sebastian.jpg"
+        "webots://projects/objects/traffic/protos/textures/highway_sign_sebastian.jpg"
       ]
     }
   ]
@@ -570,7 +594,7 @@ HighwayPole {
     HighwaySign {
       translation 0 -7.23 0
       texture [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/traffic/protos/textures/highway_sign_bayonne.jpg"
+        "webots://projects/objects/traffic/protos/textures/highway_sign_bayonne.jpg"
       ]
     }
   ]
@@ -581,7 +605,7 @@ HighwayPole {
       height 1.7
       length 3.5
       texture [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/traffic/protos/textures/highway_sign_sebastian.jpg"
+        "webots://projects/objects/traffic/protos/textures/highway_sign_sebastian.jpg"
       ]
     }
   ]
@@ -599,7 +623,7 @@ HighwayPole {
     HighwaySign {
       translation 0 -7.23 0
       texture [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/traffic/protos/textures/highway_sign_bayonne.jpg"
+        "webots://projects/objects/traffic/protos/textures/highway_sign_bayonne.jpg"
       ]
     }
   ]
@@ -610,7 +634,7 @@ HighwayPole {
       height 1.7
       length 3.5
       texture [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/traffic/protos/textures/highway_sign_sebastian.jpg"
+        "webots://projects/objects/traffic/protos/textures/highway_sign_sebastian.jpg"
       ]
     }
   ]
@@ -628,7 +652,7 @@ HighwayPole {
     HighwaySign {
       translation 0 -7.23 0
       texture [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/traffic/protos/textures/highway_sign_bayonne.jpg"
+        "webots://projects/objects/traffic/protos/textures/highway_sign_bayonne.jpg"
       ]
     }
   ]
@@ -639,7 +663,7 @@ HighwayPole {
       height 1.7
       length 3.5
       texture [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/traffic/protos/textures/highway_sign_sebastian.jpg"
+        "webots://projects/objects/traffic/protos/textures/highway_sign_sebastian.jpg"
       ]
     }
   ]
@@ -705,7 +729,6 @@ DEF SUMO_VEHICLE0 BusSimple {
     0.1 0.15 0.18
   ]
   name "vehicle(2)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE1 BmwX5Simple {
   translation -10 -10000 0.5
@@ -714,7 +737,6 @@ DEF SUMO_VEHICLE1 BmwX5Simple {
     0.72 0.52 0.18
   ]
   name "vehicle(3)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE2 BmwX5Simple {
   translation -20 -10000 0.5
@@ -723,7 +745,6 @@ DEF SUMO_VEHICLE2 BmwX5Simple {
     0.62 0.62 0.62
   ]
   name "vehicle(4)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE3 LincolnMKZSimple {
   translation -30 -10000 0.5
@@ -732,7 +753,6 @@ DEF SUMO_VEHICLE3 LincolnMKZSimple {
     0.43 0.11 0.1
   ]
   name "vehicle(5)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE4 BmwX5Simple {
   translation -40 -10000 0.5
@@ -741,7 +761,6 @@ DEF SUMO_VEHICLE4 BmwX5Simple {
     0.18 0.28 0.64
   ]
   name "vehicle(6)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE5 RangeRoverSportSVRSimple {
   translation -50 -10000 0.5
@@ -750,7 +769,6 @@ DEF SUMO_VEHICLE5 RangeRoverSportSVRSimple {
     0.18 0.5 0.72
   ]
   name "vehicle(7)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE6 TruckSimple {
   translation -60 -10000 0.5
@@ -759,7 +777,6 @@ DEF SUMO_VEHICLE6 TruckSimple {
     0.14 0.29 0.16
   ]
   name "vehicle(8)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE7 ScooterSimple {
   translation -70 -10000 0.5
@@ -776,7 +793,6 @@ DEF SUMO_VEHICLE7 ScooterSimple {
     helmetColor 0.470588 0.117647 0.117647
   }
   name "vehicle(9)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE8 BmwX5Simple {
   translation -80 -10000 0.5
@@ -785,12 +801,10 @@ DEF SUMO_VEHICLE8 BmwX5Simple {
     0.72 0.52 0.18
   ]
   name "vehicle(10)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE9 CitroenCZeroSimple {
   translation -90 -10000 0.5
   name "vehicle(11)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE10 LincolnMKZSimple {
   translation -100 -10000 0.5
@@ -799,7 +813,6 @@ DEF SUMO_VEHICLE10 LincolnMKZSimple {
     0.1 0.15 0.18
   ]
   name "vehicle(12)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE11 CitroenCZeroSimple {
   translation -110 -10000 0.5
@@ -808,7 +821,6 @@ DEF SUMO_VEHICLE11 CitroenCZeroSimple {
     0.18 0.28 0.64
   ]
   name "vehicle(13)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE12 CitroenCZeroSimple {
   translation -120 -10000 0.5
@@ -817,7 +829,6 @@ DEF SUMO_VEHICLE12 CitroenCZeroSimple {
     0.14 0.29 0.16
   ]
   name "vehicle(14)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE13 ToyotaPriusSimple {
   translation -130 -10000 0.5
@@ -826,7 +837,6 @@ DEF SUMO_VEHICLE13 ToyotaPriusSimple {
     0.14 0.29 0.16
   ]
   name "vehicle(15)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE14 BmwX5Simple {
   translation -140 -10000 0.5
@@ -835,7 +845,6 @@ DEF SUMO_VEHICLE14 BmwX5Simple {
     0.62 0.62 0.62
   ]
   name "vehicle(16)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE15 RangeRoverSportSVRSimple {
   translation -150 -10000 0.5
@@ -844,7 +853,6 @@ DEF SUMO_VEHICLE15 RangeRoverSportSVRSimple {
     0.1 0.15 0.18
   ]
   name "vehicle(17)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE16 RangeRoverSportSVRSimple {
   translation -160 -10000 0.5
@@ -853,7 +861,6 @@ DEF SUMO_VEHICLE16 RangeRoverSportSVRSimple {
     0.18 0.5 0.72
   ]
   name "vehicle(18)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE17 RangeRoverSportSVRSimple {
   translation -170 -10000 0.5
@@ -862,7 +869,6 @@ DEF SUMO_VEHICLE17 RangeRoverSportSVRSimple {
     0.1 0.15 0.18
   ]
   name "vehicle(19)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE18 ToyotaPriusSimple {
   translation -180 -10000 0.5
@@ -871,7 +877,6 @@ DEF SUMO_VEHICLE18 ToyotaPriusSimple {
     0.43 0.11 0.1
   ]
   name "vehicle(20)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE19 RangeRoverSportSVRSimple {
   translation -190 -10000 0.5
@@ -880,7 +885,6 @@ DEF SUMO_VEHICLE19 RangeRoverSportSVRSimple {
     0.1 0.15 0.18
   ]
   name "vehicle(21)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE20 TruckSimple {
   translation -200 -10000 0.5
@@ -898,7 +902,6 @@ DEF SUMO_VEHICLE21 ToyotaPriusSimple {
     0.72 0.52 0.18
   ]
   name "vehicle(23)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE22 CitroenCZeroSimple {
   translation -220 -10000 0.5
@@ -911,7 +914,6 @@ DEF SUMO_VEHICLE23 LincolnMKZSimple {
     0.1 0.15 0.18
   ]
   name "vehicle(25)"
-  window "<none>"
 }
 DEF SUMO_VEHICLE24 CitroenCZeroSimple {
   translation -240 -10000 0.5
@@ -920,5 +922,4 @@ DEF SUMO_VEHICLE24 CitroenCZeroSimple {
     0.18 0.28 0.64
   ]
   name "vehicle(26)"
-  window "<none>"
 }

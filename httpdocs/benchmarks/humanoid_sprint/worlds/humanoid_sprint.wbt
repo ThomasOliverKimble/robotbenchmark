@@ -1,4 +1,12 @@
 #VRML_SIM R2022b utf8
+
+EXTERNPROTO "webots://projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "webots://projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "webots://projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "webots://projects/appearances/protos/Grass.proto"
+EXTERNPROTO "webots://projects/robots/softbank/nao/protos/Nao.proto"
+EXTERNPROTO "webots://projects/samples/robotbenchmark/humanoid_sprint/protos/RaceStopwatch.proto"
+
 WorldInfo {
   info [
     "The humanoid sprint benchmark aims at programing a NAO robot in Python to run a 10 meter race. "
@@ -65,19 +73,19 @@ DEF TRACK Floor {
   appearance PBRAppearance {
     baseColorMap ImageTexture {
       url [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/samples/robotbenchmark/humanoid_sprint/worlds/textures/nao_10m_track_base_color.jpg"
+        "webots://projects/samples/robotbenchmark/humanoid_sprint/worlds/textures/nao_10m_track_base_color.jpg"
       ]
     }
     roughness 1
     roughnessMap ImageTexture {
       url [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/samples/robotbenchmark/humanoid_sprint/worlds/textures/nao_10m_track_roughness.jpg"
+        "webots://projects/samples/robotbenchmark/humanoid_sprint/worlds/textures/nao_10m_track_roughness.jpg"
       ]
     }
     metalness 0
     normalMap ImageTexture {
       url [
-        "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/samples/robotbenchmark/humanoid_sprint/worlds/textures/nao_10m_track_normal.jpg"
+        "webots://projects/samples/robotbenchmark/humanoid_sprint/worlds/textures/nao_10m_track_normal.jpg"
       ]
     }
   }
