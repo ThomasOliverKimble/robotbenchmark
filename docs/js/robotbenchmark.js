@@ -25,7 +25,7 @@ function createNavbar() {
     `<nav id="navbar" class="navbar is-dark is-fixed-top"">
       <div class="navbar-brand">
         <a class="navbar-item is-size-4" id="navbar-home" href="home" style="margin-right: 30px;">
-          <img src="httpdocs/images/robotbenchmark-icon-inverted.png" id="navbar-logo"/>&ensp;<strong>robot</strong>benchmark
+          <img src="images/robotbenchmark-icon-inverted.png" id="navbar-logo"/>&ensp;<strong>robot</strong>benchmark
         </a>
         <a class="navbar-burger burger" data-target="router-navbar">
           <span></span>
@@ -49,11 +49,11 @@ function createNavbar() {
   document.body.append(navbarTemplate.content.firstChild);
 
   document.getElementById('navbar-home').addEventListener('mouseover', function(e) {
-    document.getElementById('navbar-logo').src = 'httpdocs/images/robotbenchmark-icon-inverted-hover.png';
+    document.getElementById('navbar-logo').src = 'images/robotbenchmark-icon-inverted-hover.png';
   });
 
   document.getElementById('navbar-home').addEventListener('mouseout', function(e) {
-    document.getElementById('navbar-logo').src = 'httpdocs/images/robotbenchmark-icon-inverted.png';
+    document.getElementById('navbar-logo').src = 'images/robotbenchmark-icon-inverted.png';
   });
 
   const navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
