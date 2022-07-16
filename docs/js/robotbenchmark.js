@@ -14,7 +14,7 @@ function homePage() {
       <div class="hero-body">
         <div class="container title-container">
           <figure class="image is-64x64" style="top: 6px; margin-right: 15px;">
-            <img src="httpdocs/images/robotbenchmark-logo-black-eyes.svg" id="title-logo"/>
+            <img src="images/robotbenchmark-logo-black-eyes.svg" id="title-logo"/>
           </figure>
           <div class="title-text">
             <p class="title is-size-1">
@@ -76,7 +76,7 @@ function setupWebotsView(url) {
 
 function listBenchmarks() {
   return new Promise((resolve, reject) => {
-    fetch('httpdocs/benchmarks/benchmark_list.txt')
+    fetch('benchmarks/benchmark_list.txt')
       .then(function(response) { return response.text(); })
       .then(function(data) {
         const benchmarks = data.split('\n');
@@ -100,7 +100,7 @@ function listBenchmarks() {
           row.innerHTML =
             `<td class="has-text-centered" style="vertical-align: middle;" title="${robot}">
               <figure class="image is-48x48">
-                <img src="httpdocs/images/robots/${robot}.png"></img>
+                <img src="images/robots/${robot}.png"></img>
               </figure>
             </td>
             <td class="has-text-centered" style="vertical-align: middle;">
@@ -125,7 +125,7 @@ function listBenchmarks() {
 function clickEvent(event) {
   if (event.target.id.endsWith('start')) {
     const benchmark = event.target.id.split('-')[0];
-    const url = 'https://github.com/ThomasOliverKimble/robotbenchmark/blob/testing/httpdocs/benchmarks/' +
+    const url = 'https://github.com/ThomasOliverKimble/robotbenchmark/blob/testing/benchmarks/' +
       benchmark + '/worlds/' + benchmark + '.wbt';
     runWebotsView(url);
     return;
