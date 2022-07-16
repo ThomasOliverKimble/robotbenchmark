@@ -125,7 +125,7 @@ function listBenchmarks() {
 function clickEvent(event) {
   if (event.target.id.endsWith('start')) {
     const benchmark = event.target.id.split('-')[0];
-    const url = 'https://github.com/ThomasOliverKimble/robotbenchmark/blob/testing/benchmarks/' +
+    const url = 'https://github.com/ThomasOliverKimble/robotbenchmark/blob/testing/docs/benchmarks/' +
       benchmark + '/worlds/' + benchmark + '.wbt';
     runWebotsView(url);
     return;
